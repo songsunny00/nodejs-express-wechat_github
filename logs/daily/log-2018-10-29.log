@@ -1,0 +1,8 @@
+[2018-10-29T13:36:58.193] [INFO] daily - https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx468c55ab889a90b1&secret=623a8f26a769c72cadaf8d4964cf7296
+[2018-10-29T13:36:58.196] [INFO] daily - undefined
+[2018-10-29T13:36:58.198] [INFO] daily - {"access_token":"15_odTXRE66caB7wATrD8TPjiHNseOH-LQFp-9m29oyTiW5KyMgYDqUQru0eHWHdCBjiYWQWb6xc4ZGi8N4Tv82l5utWmLbDH0p2vTO7Xa4CxpnBvK2czQt5LJkT--p2S7CWbnNaJbyMhdMMBALQTDaABAADN","expires_in":7200}
+[2018-10-29T13:36:58.209] [ALL] daily - ::1 - - "GET /wechat/basic/getWechatAccessToken HTTP/1.1" 200 230 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+[2018-10-29T17:46:54.675] [ALL] daily - ::1 - - "GET /wechat/customservice/getKfList HTTP/1.1" 200 2 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+[2018-10-29T17:47:04.464] [ALL] daily - ::1 - - "GET /wechat/customservice/addKfAccount HTTP/1.1" 404 172 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+[2018-10-29T17:47:22.003] [ALL] daily - ::1 - - "GET /wechat/customservice/addKfAccount HTTP/1.1" 200 2 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
+[2018-10-29T17:50:03.165] [ALL] daily - ::1 - - "GET /wechat/customservice/updateKfAccount HTTP/1.1" 404 175 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
