@@ -25,10 +25,25 @@ function formatResult(resultStr) {
     }
     return result;
 }
+function encodeParam(jsonobj) {
+  let str = '';
+  for (let name in jsonobj) {
+    if((typeof jsonobj[name])=== 'object'){
+        let _jstr='',_obj=jsonobj[name]
+        for(let item in _obj){
+            _jstr+= name+'.'+item + '=' + _obj[item] + '&'
+        }
+        str += _jstr 
+    }else{
+        str += name + '=' + jsonobj[name] + '&'
+    }
+  }
+  return str
+}
 let Request = {
-    postHttps:(host,url,data)=>{
+    postHttps:(host,url,param)=>{
         return new Promise((resolve, reject)=> {
-            let datastr=JSON.stringify(data);
+            let datastr=JSON.stringify(param);
             let opt = {  
                 method: "POST",  
                 host: host,  
@@ -86,7 +101,7 @@ let Request = {
             let opt = {  
                 method: "POST",  
                 host: host,  
-                port: 8132,  
+                port: 80,  
                 path: url,  
                 headers: {
                     'Content-Type': 'Application/json;charset=utf-8',

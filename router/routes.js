@@ -8,11 +8,15 @@ var bodyParser = require('body-parser');
 var multipartMiddleware = bodyParser.json();
 
 var Wechat =require('../app/wechat/services/index.js');
+var Work =require('../app/work/services/index.js');
 //var Wechat = require('../app/wechat/controllers/wechat');
 module.exports = function(app) {  
   //require('../app/wechat/services')(app)
   app.use('/wechat',Wechat);
+  //企业微信
+  app.use('/work',Work);
   app.use('/',Wechat);
+
   //wechat
   // app.get('/getWechatUserInfo', Wechat.getWechatUser);
   // app.get('/getWechatAccessToken', Wechat.getWechatAccessToken);

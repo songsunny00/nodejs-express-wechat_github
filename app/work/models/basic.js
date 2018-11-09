@@ -25,9 +25,9 @@ function getNonceStr() {
 }
 let Basic ={
 	//获取微信ACCESS_TOKEN
-	getWechatAccessToken: () => {
+	getWorkAccessToken: () => {
 		return new Promise((resolve, reject)=> {
-			let url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + Config.APP_ID + '&secret=' + Config.APP_SECRET;
+			let url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=' + Config.APP_ID + '&corpsecret=' + Config.AGENT_SECRET;
 			let currentTime = new Date().getTime();
 			if (Config.APP_TOKEN && Config.APP_TokenTime && currentTime <= Config.APP_TokenTime + time) {
 			    resolve(getTokenResult);
@@ -37,7 +37,7 @@ let Basic ={
 			    if (result && result.errcode==Config.APP_SUCCESS) {
 			    	getTokenResult = result;
 			        Config.APP_TOKEN = result.access_token;
-			        global.WECHAT_TOKEN = result.access_token;
+			        global.APP_TOKEN = result.access_token;
 			        Config.APP_TokenTime = currentTime;
 			        resolve(result);
 			    }else{
@@ -48,12 +48,14 @@ let Basic ={
 			})
 		})
 	},
-	//获取微信用户openId 
-	getWechatOpenId:(code) => {
+	//获取微信用户userId 
+	getWorkUserId:(code) => {
 		return new Promise((resolve, reject)=> {
-			let url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + Config.APP_ID + '&secret=' + Config.APP_SECRET + '&code=' + code + '&grant_type=authorization_code'
+			let url = 'https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token='+Config.APP_TOKEN+'&code='+code;
 			request.getHttps(url).then((result) => {
 			    if (result && result.errcode==Config.APP_SUCCESS) {
+			    	Logger.info('user_id:'+result.UserId);
+			    	Logger.info(result)
 			      	resolve(result);
 			    }else{
 			    	reject(result);
@@ -64,10 +66,11 @@ let Basic ={
 		})
 	},
 	//获取微信用户UserInfo
-	getWechatUserInfo: (OPENID) => {
+	getWorkUserInfo: (user_ticket) => {
+		Logger.info('user_ticket:'+user_ticket);
 		return new Promise((resolve, reject)=> {
-			let url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + Config.APP_TOKEN + '&openid=' + OPENID + '&lang=zh_CN';
-			request.getHttps(url).then((result) => {
+			let url = '/cgi-bin/user/getuserdetail?access_token=' + Config.APP_TOKEN;
+			request.postHttps('qyapi.weixin.qq.com',url,{"user_ticket": user_ticket}).then((result) => {
 				if (result && result.errcode==Config.APP_SUCCESS) {
 					resolve(result);
 				}else{
@@ -81,7 +84,7 @@ let Basic ={
 	//获取微信用户UserInfo
 	getNewTicket: () =>{
 		return new Promise((resolve, reject)=> {
-			let url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + Config.APP_TOKEN + '&type=jsapi'
+			let url = 'https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=' + Config.APP_TOKEN;
 			let currentTime = new Date().getTime();
 			if (Config.APP_TICKET && Config.APP_TicketTime && currentTime <= Config.APP_TicketTime + time) {
 			    resolve(getTicketResult);
@@ -103,9 +106,12 @@ let Basic ={
 	},
 	//获取微信用户UserInfo
 	getSignature: (ticket, url) => {
+		Logger.error(url)
+		//url='http://wechat.4006005656.com/mb-wechat/test.html'
 		return new Promise((resolve, reject)=> {
 			let timestamp = getTimesTamp(),noncestr = getNonceStr();
 			let str = 'jsapi_ticket=' + ticket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=' + url;
+			Logger.error(str)
 			var signature = crypto.createHash('sha1').update(str).digest('hex');
 			resolve({
 				errcode:Config.APP_SUCCESS,

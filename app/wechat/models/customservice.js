@@ -1,10 +1,12 @@
 let Config = require('../config');
+Config.APP_TOKEN=global.WECHAT_TOKEN;
+let request = require('../../common/request');
 let CustomService ={
 	//添加客服帐号
 	addKfAccount: (param) => {
 		return new Promise((resolve, reject)=> {
-			let url = '/customservice/kfaccount/add?access_token' + Config.APP_TOKEN;
-			request.postHttps('api.weixin.qq.com',url,param).then((result) =>{
+			let url = '/customservice/kfaccount/add?access_token=' + Config.APP_TOKEN;
+			request.postHttp('api.weixin.qq.com',url,param).then((result) =>{
 			    if (result && result.errcode==Config.APP_SUCCESS) {
 			        resolve(result);
 			    }else{
@@ -18,8 +20,8 @@ let CustomService ={
 	//修改客服信息
 	updateKfAccount: (param) => {
 		return new Promise((resolve, reject)=> {
-			let url = '/customservice/kfaccount/update?access_token' + Config.APP_TOKEN;
-			request.postHttps('api.weixin.qq.com',url,param).then((result) =>{
+			let url = '/customservice/kfaccount/update?access_token=' + Config.APP_TOKEN;
+			request.postHttp('api.weixin.qq.com',url,param).then((result) =>{
 			    if (result && result.errcode==Config.APP_SUCCESS) {
 			        resolve(result);
 			    }else{
@@ -34,7 +36,7 @@ let CustomService ={
 	getKfList:() => {
 		return new Promise((resolve, reject)=> {
 			let url = 'https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token='+Config.APP_TOKEN;
-			request.getHttps(url).then((result) => {
+			request.getHttp(url).then((result) => {
 			    if (result && result.errcode==Config.APP_SUCCESS) {
 			      	resolve(result);
 			    }else{
@@ -49,7 +51,7 @@ let CustomService ={
 	inviteWorker: (param) => {
 		return new Promise((resolve, reject)=> {
 			let url = '/customservice/kfaccount/inviteworker?access_token='+Config.APP_TOKEN;
-			request.postHttps('api.weixin.qq.com',url,param).then((result) => {
+			request.postHttp('api.weixin.qq.com',url,param).then((result) => {
 				if (result && result.errcode==Config.APP_SUCCESS) {
 					resolve(result);
 				}else{
