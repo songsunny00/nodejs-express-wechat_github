@@ -21,17 +21,6 @@ var Globals={
     APP_SUCCESS:'200',
     TEMPLATE_ID:Configs.template_id[Configs.index]
 }
-// let ticketInfo = redis.get('ticketInfo');
-// if(ticketInfo){
-//     Globals.APP_TICKET = ticketInfo.split(',')[0];
-//     Globals.APP_TicketTime = ticketInfo.split(',')[1]-0;
-// }
-
-// let tokenInfo = redis.get('tokenInfo');
-// if(tokenInfo){
-//     Globals.APP_TOKEN = tokenInfo.split(',')[0];
-//     Globals.APP_TokenTime = tokenInfo.split(',')[1]-0;
-// }
 //获取值
 redis.get('tokenInfo', function (err, res) {
     if(err){
