@@ -22,15 +22,17 @@ $ node server.js
 共有4大模块：微信公众号、微信企业号、百度Api、运维达人聊天室
 以“微信公众号”模块为例子，如何配置微信sdk和获取用户信息，模板消息推送等
 ### 路由
+ router.js--只做请求分发，没有业务逻辑  
  ![路由](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/wechat_router.png?raw=true)  
+ #### 调用node中间件接口，配置微信SDK
  本地运行nodejs项目，地址是http://localhost:8321/  
  微信公众号开发，需要配置JS接口安全域名，所以需要做一个域名映射到这个nodejs应用，在此推荐花生壳，注册一个账号领取一个免费的二级域名，映射到此应用上
  假设http://song.sunny.vip/mb-wechat --> http://localhost:8321  
  http://song.sunny.vip/mb-wechat/wechat/basic/getWechatConfig 配置SDK  
  http://song.sunny.vip/mb-wechat/wechat/basic/getWechatUserInfo 获取用户详情  
- http://song.sunny.vip/mb-wechat/wechat/basic/getWechatAccessToken 获取accesstoken   
+ http://song.sunny.vip/mb-wechat/wechat/basic/getWechatAccessToken 获取accesstoken  
  
- 后台配置微信公众号信息  
+### 后台配置微信公众号信息  
  ![wechat结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/wechat_construct.png?raw=true)  
 
  ps：
