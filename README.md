@@ -26,14 +26,14 @@ $ node server.js
  ![路由](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/wechat_router.png?raw=true)  
  #### 调用node中间件接口，配置微信SDK
  本地运行nodejs项目，地址是http://localhost:8321/  
- 微信公众号开发，需要配置JS接口安全域名，所以需要做一个域名映射到这个nodejs应用，在此推荐*花生壳*，注册一个账号领取一个免费的二级域名，映射到此应用上
+ 微信公众号开发，需要配置JS接口安全域名，所以需要做一个域名映射到这个nodejs应用，在此推荐**花生壳**，注册一个账号领取一个免费的二级域名，映射到此应用上
  ![可信域名配置](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/con1.png?raw=true)  
  假设http://song.sunny.vip/mb-wechat --> http://localhost:8321  
  http://song.sunny.vip/mb-wechat/wechat/basic/getWechatConfig 配置SDK  
  http://song.sunny.vip/mb-wechat/wechat/basic/getWechatUserInfo 获取用户详情  
  http://song.sunny.vip/mb-wechat/wechat/basic/getWechatAccessToken 获取accesstoken  
  前端应用，想调用微信扫一扫功能，则需要：  
-调用getWechatAccessToken--》调用getWechatConfig--》直接使用sdk方法
+调用**getWechatAccessToken**--》调用**getWechatConfig**--》直接使用sdk方法
  
 ### 后台配置微信公众号信息  
  ![wechat结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/wechat_construct.png?raw=true)  
@@ -42,7 +42,7 @@ $ node server.js
  controllers -->逻辑处理  
  models      -->数据处理  
  config      -->微信公众号ID、secrets信息配置  
- 微信的access_token是从获取开始7200秒后失效,也就是2个小时,需要重新获取，为什么使用redis数据库呢？双机负载均衡，部署两套服务器，要共享一个token，所以需要储存到一个共同可访问的数据库，读写性能快的，所以选择redis储存token，每次先读取token判断是否需要重新获取token
+ 微信的**access_token**是从获取开始7200秒后失效,也就是2个小时,需要重新获取，为什么使用redis数据库呢？双机负载均衡，部署两套服务器，要共享一个token，所以需要储存到一个共同可访问的数据库，读写性能快的，所以选择**redis**储存token，每次先读取token判断是否需要重新获取token
  
 config.js  
 ```
@@ -94,10 +94,10 @@ module.exports = Globals;
  
  ```
  ## 运维达人聊天室
- ![wechat结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/chat.png?raw=true)
+ ![wechat结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/chat.png?raw=true)  
  public/chat--放置的是聊天室的静态资源文件，该应用是针对企业号创建的应用，如有企业号的童鞋，不妨试试改相应的企业号应用id等配置信息，启动node项目，访问看看~  
  微信端用户界面和PC端运维界面：  
  <img src="https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/work_chat.jpg?raw=true" width="300" align=center />
- <img src="https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/work_pc.png?raw=true" width="500" align=center />  
+ <img src="https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/work_pc.png?raw=true" width="600" align=center />  
 
  
