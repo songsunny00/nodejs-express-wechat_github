@@ -10,23 +10,19 @@ let Message ={
 			let url = '/cgi-bin/message/template/send?access_token=' + Config.APP_TOKEN;
 			let data = {
 			    "touser": sendData.frId,
-			    "template_id": "V3zlprP6fvqHrux9C5V84tCxrnBOGtGBb0zSebCuiL8",
+			    "template_id": Config.TEMPLATE_ID,
 			    "url": sendData.templateUrl,
 			    "data": {
-			      "title": {
+			      "first": {
 			        "value": sendData.title,
 			        "color": "#173177"
 			      },
 			      "keyword1": {
-			        "value": sendData.taskName,
+			        "value": sendData.createTime,
 			        "color": "#173177"
 			      },
 			      "keyword2": {
-			        "value": sendData.handleName,
-			        "color": "#173177"
-			      },
-			      "keyword3": {
-			        "value": sendData.createTime,
+			        "value": sendData.content,
 			        "color": "#173177"
 			      },
 			      "remark": {

@@ -41,7 +41,7 @@ function encodeParam(jsonobj) {
   return str
 }
 let Request = {
-    postHttps:(host,url,param)=>{
+    postHttps:(host,url,param,type)=>{
         return new Promise((resolve, reject)=> {
             let datastr=JSON.stringify(param);
             let opt = {  
@@ -50,7 +50,7 @@ let Request = {
                 port: 443,  
                 path: url,  
                 headers: {
-                    'Content-Type': 'Application/json;charset=utf-8',
+                    'Content-Type': !type?'Application/json;charset=utf-8':type,
                     'Content-Length':new Buffer(datastr).length
                 }
             }; 
@@ -95,13 +95,13 @@ let Request = {
             });
         });
     },
-    postHttp:(host,url,data) => {
+    postHttp:(host,url,param,port) => {
         return new Promise((resolve, reject)=> {
-            let datastr=JSON.stringify(data);
+            let datastr=JSON.stringify(param);
             let opt = {  
                 method: "POST",  
                 host: host,  
-                port: 80,  
+                port: port?port:80,  
                 path: url,  
                 headers: {
                     'Content-Type': 'Application/json;charset=utf-8',
@@ -117,7 +117,7 @@ let Request = {
                 res.on("end", function () {  
                     let buff = Buffer.concat(datas, size); 
                     let result =buff.toString(); 
-                    printLog(Logger_daily,'info',{url:host+url,dataStr:datastr,resultStr:result});
+                    printLog(Logger_daily,'info',{url:host+':'+opt.port+url,dataStr:datastr,resultStr:result});
                     resolve(formatResult(result));
                 });
             });
@@ -148,7 +148,26 @@ let Request = {
                 reject(formatResult(e.message));
             });
         });
+    },
+    getPicToBase64:(url)=>{
+        return new Promise((resolve, reject)=> {
+            http.get(url,(res) => {
+                let datas = [],size = 0;  
+                res.on('data', function (data) {  
+                    datas.push(data);  
+                    size += data.length;  
+                });  
+                res.on("end", function () {  
+                    let buff = Buffer.concat(datas, size); 
+                    let result =buff.toString('base64');
+                    resolve(formatResult(result));
+                });  
+            }).on("error", function (e) {  
+                reject(formatResult(e.message));
+            });
+        });
     }
 	
 }
+
 module.exports = Request;
