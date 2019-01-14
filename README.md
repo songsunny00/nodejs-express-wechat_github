@@ -5,7 +5,14 @@
 ![项目结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/construct.png?raw=true)  
 
 ## 项目启动
-...
-npm i 或者 yarn
-node server.js
-...
+  Install dependencies:
+
+```bash
+$ npm install
+```
+
+  Start the server:
+
+```bash
+$ npm start
+```
