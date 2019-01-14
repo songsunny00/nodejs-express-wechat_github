@@ -3,3 +3,9 @@
   用**nodejs**写个调用**微信各种API**,这个还可以支持**log日志**输出、**proxy代理**接口等，功能齐全中间件...可以稍微远离后台，安静敲代码了
 ## 结构说明
 ![项目结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/construct.png?raw=true)  
+
+## 项目启动
+...
+npm i 或者 yarn
+node server.js
+...
