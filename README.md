@@ -94,10 +94,11 @@ module.exports = Globals;
  
  ```
  ## 运维达人聊天室
+ ![wechat结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/chat.png?raw=true)
  public/chat--放置的是聊天室的静态资源文件，该应用是针对企业号创建的应用，如有企业号的童鞋，不妨试试改相应的企业号应用id等配置信息，启动node项目，访问看看~  
- 微信端用户界面：
+ 微信端用户界面：  
   ![wechat结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/work_chat.jpg?raw=true)  
- pc端运维界面：
+ pc端运维界面：  
   ![wechat结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/work_pc.png?raw=true)  
  
  
