@@ -22,6 +22,7 @@ $ node server.js
 共有4大模块：微信公众号、微信企业号、百度Api、运维达人聊天室
 以“微信公众号”模块为例子，如何配置微信sdk和获取用户信息，模板消息推送等
 ### 路由
+ ![路由](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/wechat_router.png?raw=true)  
  本地运行nodejs项目，地址是http://localhost:8321/  
  微信公众号开发，需要配置JS接口安全域名，所以需要做一个域名映射到这个nodejs应用，在此推荐花生壳，注册一个账号领取一个免费的二级域名，映射到此应用上
  假设http://song.sunny.vip/mb-wechat --> http://localhost:8321  
@@ -30,6 +31,8 @@ $ node server.js
  http://song.sunny.vip/mb-wechat/wechat/basic/getWechatAccessToken 获取accesstoken   
  
  后台配置微信公众号信息  
+ ![wechat结构说明图](https://github.com/songsunny00/nodejs-express-wechat_github/blob/master/public/githubImg/wechat_construct.png?raw=true)  
+
  ps：
  微信的access_token是从获取开始7200秒后失效,也就是2个小时,需要重新获取，为什么使用redis数据库呢？双机负载均衡，部署两套服务器，要共享一个token，所以需要储存到一个共同可访问的数据库，读写性能快的，所以选择redis储存token，每次先读取token判断是否需要重新获取token
  
