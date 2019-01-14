@@ -32,6 +32,8 @@ $ node server.js
  后台配置微信公众号信息  
  ps：
  微信的access_token是从获取开始7200秒后失效,也就是2个小时,需要重新获取，为什么使用redis数据库呢？双机负载均衡，部署两套服务器，要共享一个token，所以需要储存到一个共同可访问的数据库，读写性能快的，所以选择redis储存token，每次先读取token判断是否需要重新获取token
+ 
+config.js  
 ```
 const allConfig = require('../../config/allConfig'),
     _INDEX = allConfig.INDEX;
@@ -39,9 +41,9 @@ const allConfig = require('../../config/allConfig'),
 var Configs={
 	index:_INDEX,
 	txts:['测试','生产'],
-	ids:['testee95','test86ff'],
-	secrets:['test19cc0ec','testa0c614'],
-    template_id:['testKKwyRVChY2GUGQY','testVIsRt6WQKF0O8imiEMMc']
+	ids:['testee95','test86ff'],//公众号的appID
+	secrets:['test19cc0ec','testa0c614'],//公众号的appsecret
+    	template_id:['testKKwyRVChY2GUGQY','testVIsRt6WQKF0O8imiEMMc']//公众号消息推送模板id
 }
 //获取redis的token信息--accesstoke用redis储存
 var redis = require('../common/redis');
