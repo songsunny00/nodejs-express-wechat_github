@@ -1,6 +1,6 @@
 
 var Globals={
-    INDEX:0,
+    INDEX:1,
     TXTS:['测试UAT','生产PRO']
     
 }
